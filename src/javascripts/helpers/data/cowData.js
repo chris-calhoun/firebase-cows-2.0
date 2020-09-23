@@ -30,4 +30,25 @@ const addCow = (data) => axios
   })
   .catch((error) => console.warn(error));
 
-export default { getAllCows, deleteCow, addCow };
+const getFarmerCows = (farmerUid) => new Promise((resolve, reject) => {
+  axios
+    .get(`${baseUrl}/cows.json?orderBy="farmerUid"&equalTo="${farmerUid}"`)
+    .then((response) => {
+      const farmerCows = response.data;
+      const cows = [];
+      if (farmerCows) {
+        Object.keys(farmerCows).forEach((cowId) => {
+          cows.push(farmerCows[cowId]);
+        });
+      }
+      resolve(cows);
+    })
+    .catch((error) => reject(error));
+});
+
+export default {
+  getAllCows,
+  deleteCow,
+  addCow,
+  getFarmerCows
+};
