@@ -1,5 +1,6 @@
 import farmersView from '../components/views/farmersView';
 import cowsView from '../components/views/cowsView';
+import addCowsView from '../components/views/addCowView';
 
 const viewHelper = (id) => {
   $('#app').html('');
@@ -8,6 +9,8 @@ const viewHelper = (id) => {
       return farmersView.farmersView();
     case 'cows-link':
       return cowsView.cowView();
+    case 'add-cow-link':
+      return addCowsView.addCowView();
     default:
       return console.warn('nothing clicked');
   }
