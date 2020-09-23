@@ -5,7 +5,8 @@ const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
 // STUDENTS: Refactor this to use new Promise syntax
 const getAllCows = () => new Promise((resolve, reject) => {
-  axios.get(`${baseUrl}/cows.json`)
+  axios
+    .get(`${baseUrl}/cows.json`)
     .then((response) => {
       const demCows = response.data;
       const cows = [];
@@ -19,4 +20,6 @@ const getAllCows = () => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export default { getAllCows };
+const deleteCow = (firebaseKey) => axios.delete(`${baseUrl}/cows/${firebaseKey}.json`);
+
+export default { getAllCows, deleteCow };

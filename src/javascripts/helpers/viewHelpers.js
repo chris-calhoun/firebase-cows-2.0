@@ -13,7 +13,8 @@ const viewHelper = (id) => {
   }
 };
 
-const viewListener = () => {
+const viewListener = (view) => {
+  viewHelper(view);
   $('body').on('click', 'li.nav-item', (e) => {
     viewHelper(e.currentTarget.id);
   });
